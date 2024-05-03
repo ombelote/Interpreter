@@ -1,0 +1,9 @@
+TT_INT = 'INT'
+TT_FLOAT = 'FLOAT'
+TT_PLUS = 'PLUS'
+TT_MINUS = 'MINUS'
+TT_MUL = 'MUL'
+TT_DIV = 'DIV'
+TT_LPAREN = 'LPAREN' # ( left parenthesis
+TT_RPAREN = 'RPAREN' # ) right parenthesis
+DIGITS = "0123456789"
