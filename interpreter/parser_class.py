@@ -4,12 +4,13 @@ from nodes import *
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
-        self.tokenIndex = 1
+        self.tokenIndex = -1
         self.advance()
 
     def advance(self):
         self.tokenIndex += 1
-        self.currentToken = self.tokens[self.tokenIndex] if self.tokenIndex < len(self.tokens) else None
+        if self.tokenIndex < len(self.tokens):
+            self.currentToken = self.tokens[self.tokenIndex] 
         return self.currentToken
 
     def factor(self):
@@ -19,18 +20,18 @@ class Parser:
             return NumberNode(token)
 
     def term(self):
-        return self.bin_op(self.factor(), (TT_MUL,TT_DIV))
+        return self.bin_op(self.factor, (TT_MUL,TT_DIV))
 
     def expression(self):
-        return self.bin_op(self.term(), (TT_PLUS,TT_MINUS))
+        return self.bin_op(self.term, (TT_PLUS,TT_MINUS))
 
     def bin_op(self, function, operands):
         left = self.factor()
-        while self.currentToken in operands:
+        while self.currentToken.type in operands:
             operatorToken = self.currentToken
+            self.advance()
             right = function()
             left = BinOpNode(left, operatorToken, right)
-
         return left
     
     def parse(self):

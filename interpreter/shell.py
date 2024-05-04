@@ -1,9 +1,13 @@
 from lexer import Lexer
+from parser_class import Parser
 
 def run(fileName, text):
     lexer = Lexer(fileName, text)
     tokens, err = lexer.make_tokens()
-    return tokens, err
+    if err : return None, err
+    parser = Parser(tokens)
+    ast = parser.parse()
+    return ast, None
 
 while True:
     text = input('basic > ')

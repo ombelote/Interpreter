@@ -12,4 +12,4 @@ class BinOpNode:
         self.right = rightNode
 
     def __repr__(self):
-        return f'{self.left}, {self.operatorToken}, {self.right}'
+        return f'({self.left}, {self.operatorToken}, {self.right})'
